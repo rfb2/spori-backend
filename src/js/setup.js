@@ -22,27 +22,25 @@ async function main() {
   console.info(`Initializing database on ${connectionString}`);
 
   // drop tables if exists
-  await query('DROP TABLE IF EXISTS likedbooks');
-  await query('DROP TABLE IF EXISTS tagsInBooks');
-  await query('DROP TABLE IF EXISTS tags');
-  await query('DROP TABLE IF EXISTS books');
-  await query('DROP TABLE IF EXISTS users');
+  await query('DROP TABLE IF EXISTS ingredients');
+  await query('DROP TABLE IF EXISTS ingredientsInProducts');
+  await query('DROP TABLE IF EXISTS packaging');
+  await query('DROP TABLE IF EXISTS products');
+  // await query('DROP TABLE IF EXISTS users');
 
   console.info('Tables deleted');
 
   // create tables from schemas
   try {
-    const tableUser = await readFileAsync('./src/sql/user/schemaUser.sql');
-    const tableBook = await readFileAsync('./src/sql/book/schemaBook.sql');
-    const tableTag = await readFileAsync('./src/sql/tag/schemaTag.sql');
-    const tableTagsInBooks = await readFileAsync('./src/sql/tagsInBooks/schemaTagsInBooks.sql');
-    const tableLikedBooks = await readFileAsync('./src/sql/likedBooks/schemaLikedBooks.sql');
+    const tableIngredients = await readFileAsync('./src/sql/ingredients/schemaIngredients.sql');
+    const tableIngrInProducts = await readFileAsync('./src/sql/ingredientsInProducts/schemaIngredientsInProducts.sql');
+    const tablePackaging = await readFileAsync('./src/sql/packaging/schemaPackaging.sql');
+    const tableProducts = await readFileAsync('./src/sql/products/schemaProducts.sql');
 
-    await query(tableUser.toString('utf8'));
-    await query(tableBook.toString('utf8'));
-    await query(tableTag.toString('utf8'));
-    await query(tableTagsInBooks.toString('utf8'));
-    await query(tableLikedBooks.toString('utf8'));
+    await query(tableIngredients.toString('utf8'));
+    await query(tableIngrInProducts.toString('utf8'));
+    await query(tablePackaging.toString('utf8'));
+    await query(tableProducts.toString('utf8'));
 
     console.info('Tables created');
   } catch (e) {
@@ -52,17 +50,15 @@ async function main() {
 
   // insert data into tables
   try {
-    const insertUser = await readFileAsync('./src/sql/user/insertUser.sql');
-    const insertBook = await readFileAsync('./src/sql/book/insertBook.sql');
-    const insertTag = await readFileAsync('./src/sql/tag/insertTag.sql');
-    const insertTagsInBooks = await readFileAsync('./src/sql/tagsInBooks/insertTagsInBooks.sql');
-    const insertLikedBooks = await readFileAsync('./src/sql/likedBooks/insertLikedBooks.sql');
+    const insertIngredients = await readFileAsync('./src/sql/ingredients/insertIngredients.sql');
+    const insertIngrInProducts = await readFileAsync('./src/sql/ingredientsInProducts/insertIngredientsInProducts.sql');
+    const insertPackaging = await readFileAsync('./src/sql/packaging/insertPackaging.sql');
+    const insertProducts = await readFileAsync('./src/sql/products/insertProducts.sql');
 
-    await query(insertUser.toString('utf8'));
-    await query(insertBook.toString('utf8'));
-    await query(insertTag.toString('utf8'));
-    await query(insertTagsInBooks.toString('utf8'));
-    await query(insertLikedBooks.toString('utf8'));
+    await query(insertIngredients.toString('utf8'));
+    await query(insertIngrInProducts.toString('utf8'));
+    await query(insertPackaging.toString('utf8'));
+    await query(insertProducts.toString('utf8'));
 
     console.info('Data inserted');
   } catch (e) {

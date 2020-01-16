@@ -1,0 +1,1 @@
+INSERT INTO ingredientsInProducts (product, ingredient, amount) VALUES (0, 0, 500);
