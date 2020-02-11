@@ -1,11 +1,11 @@
 const express = require('express');
 
 const { catchErrors, isNumber } = require('../utils');
-const { selectProducts } = require('./dbProducts');
+const selectProducts = require('./dbProducts');
 
 const router = express.Router();
 
-export default async function productsRoute(req, res, next) {
+async function productsRoute(req, res, next) {
   const { id } = req.params;
 
   // TODO: bæta við fleiri search valmöguleikum

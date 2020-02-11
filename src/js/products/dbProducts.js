@@ -1,7 +1,7 @@
 const { query } = require('../db');
 
 
-export default async function selectProducts(params) {
+async function selectProducts(params) {
   const keys = Object.keys(params);
 
   keys.map((key) => {
@@ -49,3 +49,7 @@ export default async function selectProducts(params) {
   ]);
   return result.rows;
 }
+
+module.exports = {
+  selectProducts,
+};
