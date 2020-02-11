@@ -1,5 +1,5 @@
 CREATE TABLE packaging (
     id SERIAL PRIMARY KEY,
     name VARCHAR(128) NOT NULL UNIQUE,
-    footprint NUMBER NOT NULL,
+    footprint REAL NOT NULL
 );

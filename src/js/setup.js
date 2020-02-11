@@ -22,8 +22,8 @@ async function main() {
   console.info(`Initializing database on ${connectionString}`);
 
   // drop tables if exists
-  await query('DROP TABLE IF EXISTS packaging');
   await query('DROP TABLE IF EXISTS products');
+  await query('DROP TABLE IF EXISTS packaging');
   // await query('DROP TABLE IF EXISTS users');
 
   console.info('Tables deleted');
