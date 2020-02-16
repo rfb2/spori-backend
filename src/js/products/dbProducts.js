@@ -1,12 +1,13 @@
 const { query } = require('../db');
 
 
-async function selectProducts(params) {
-  const keys = Object.keys(params);
+async function selectProducts(search) {
+  const keys = Object.keys(search);
+  const params = search;
 
   keys.map((key) => {
     if (key === 'name') {
-      keys[key] = `%${keys[key].toLowerCase()}%`;
+      params[key] = `%${params[key].toLowerCase()}%`;
     }
     return null;
   });
@@ -17,15 +18,15 @@ async function selectProducts(params) {
   keys.forEach((key, index) => {
     let searchParam;
     if (key === 'name') {
-      searchParam = `lower(title) LIKE $${index + 1}`;
+      searchParam = `lower(name) LIKE $${index + 1}`;
     } else if (key === 'code') {
-      searchParam = `lower(author) LIKE $${index + 1}`;
+      searchParam = `lower(code) LIKE $${index + 1}`;
     } else if (key === 'packaging') {
-      searchParam = `price >= $${index + 1}`;
+      searchParam = `lower(packaging) LIKE $${index + 1}`;
     } else if (key === 'origin') {
-      searchParam = `price <= $${index + 1}`;
+      searchParam = `lower(origin) LIKE $${index + 1}`;
     } else if (key === 'grade') {
-      searchParam = `price = $${index + 1} `;
+      searchParam = `grade = $${index + 1} `;
     }
 
     if (index === keys.length - 1) {
@@ -37,9 +38,9 @@ async function selectProducts(params) {
 
   let q;
   if (paramValues.length === 0) {
-    q = 'SELECT * FROM books';
+    q = 'SELECT * FROM products';
   } else {
-    q = `SELECT * FROM books WHERE 
+    q = `SELECT * FROM products WHERE 
     ${searchParams}
     `;
   }
@@ -50,6 +51,13 @@ async function selectProducts(params) {
   return result.rows;
 }
 
+async function selectByIdProducts(id) {
+  const q = 'SELECT * FROM products WHERE id=$1';
+  const result = await query(q, [id]);
+  return result.rows;
+}
+
 module.exports = {
   selectProducts,
+  selectByIdProducts,
 };
