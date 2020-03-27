@@ -4,5 +4,5 @@ CREATE TABLE products (
     code VARCHAR(13) NOT NULL UNIQUE,
     packaging VARCHAR(128) REFERENCES packaging(name),
     origin VARCHAR(128),
-    grade REAL NOT NULL
+    score REAL NOT NULL
 );
