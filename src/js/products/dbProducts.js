@@ -18,15 +18,15 @@ async function selectProducts(search) {
   keys.forEach((key, index) => {
     let searchParam;
     if (key === 'name') {
-      searchParam = `lower(name) LIKE $${index + 1}`;
+      searchParam = `lower(products.name) LIKE $${index + 1}`;
     } else if (key === 'code') {
       searchParam = `lower(code) LIKE $${index + 1}`;
     } else if (key === 'packaging') {
       searchParam = `lower(packaging) LIKE $${index + 1}`;
     } else if (key === 'origin') {
       searchParam = `lower(origin) LIKE $${index + 1}`;
-    } else if (key === 'grade') {
-      searchParam = `grade = $${index + 1} `;
+    } else if (key === 'score') {
+      searchParam = `score = $${index + 1} `;
     }
 
     if (index === keys.length - 1) {
@@ -38,9 +38,9 @@ async function selectProducts(search) {
 
   let q;
   if (paramValues.length === 0) {
-    q = 'SELECT * FROM products';
+    q = 'SELECT products.name AS name, code, packaging.name AS packaging, origin, score, packaging.footprint FROM products JOIN packaging ON products.packaging=packaging.name';
   } else {
-    q = `SELECT * FROM products WHERE 
+    q = `SELECT products.name AS name, code, packaging.name AS packaging, origin, score, packaging.footprint FROM products JOIN packaging ON products.packaging=packaging.name WHERE
     ${searchParams}
     `;
   }

@@ -2,6 +2,7 @@ const express = require('express');
 
 const { catchErrors, isNumber } = require('../utils');
 const { selectProducts, selectByIdProducts } = require('./dbProducts');
+const { selectPackaging, selectPackagingByName } = require('../packaging/dbPackaging');
 
 const router = express.Router();
 
@@ -34,7 +35,7 @@ async function productsRoute(req, res) {
     code,
     packaging,
     origin,
-    grade,
+    score,
   } = req.query;
 
   // TODO: bæta við fleiri search valmöguleikum
@@ -51,16 +52,21 @@ async function productsRoute(req, res) {
   if (origin) {
     search.origin = origin;
   }
-  if (grade) {
-    search.grade = grade;
+  if (score) {
+    search.grade = score;
   }
 
-  const product = await selectProducts(search);
+  const products = await selectProducts(search);
 
-  if (product) {
-    return res.status(200).json(product);
+  if (products && products.length !== 0) {
+    const packaging = await selectPackaging();
+    // products.forEach(prod => {
+    //   let total = await selectPackagingByName(prod.packaging);
+      
+    // });
+    return res.status(200).json(products);
   }
-  return res.status(404);
+  return res.status(404).json({ error: 'No products found' });
 }
 
 router.get('/', catchErrors(productsRoute));
