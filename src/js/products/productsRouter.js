@@ -8,8 +8,6 @@ const router = express.Router();
 async function productsIDRoute(req, res, next) {
   const { id } = req.params;
 
-  // TODO: bæta við fleiri search valmöguleikum
-
   if (!id) {
     return next();
   }

@@ -52,7 +52,7 @@ async function selectProducts(search) {
 }
 
 async function selectByIdProducts(id) {
-  const q = 'SELECT * FROM products WHERE id=$1';
+  const q = 'SELECT products.name AS name, code, packaging.name AS packaging, origin, score, packaging.footprint AS packaging_footprint, packaging.breakdown_time AS packaging_breakdown_time, packaging.reusability AS packaging_reusability FROM products JOIN packaging ON products.packaging=packaging.name WHERE id=$1';
   const result = await query(q, [id]);
   return result.rows;
 }
