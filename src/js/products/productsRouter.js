@@ -35,7 +35,6 @@ async function productsRoute(req, res) {
     score,
   } = req.query;
 
-  // TODO: bæta við fleiri search valmöguleikum
   const search = {};
   if (name) {
     search.name = name;
