@@ -38,9 +38,9 @@ async function selectProducts(search) {
 
   let q;
   if (paramValues.length === 0) {
-    q = 'SELECT products.name AS name, code, packaging.name AS packaging, origin, score, packaging.footprint FROM products JOIN packaging ON products.packaging=packaging.name';
+    q = 'SELECT products.name AS name, code, packaging.name AS packaging, origin, score, packaging.footprint AS packaging_footprint, packaging.breakdown_time AS packaging_breakdown_time, packaging.reusability AS packaging_reusability FROM products JOIN packaging ON products.packaging=packaging.name';
   } else {
-    q = `SELECT products.name AS name, code, packaging.name AS packaging, origin, score, packaging.footprint FROM products JOIN packaging ON products.packaging=packaging.name WHERE
+    q = `SELECT products.name AS name, code, packaging.name AS packaging, origin, score, packaging.footprint AS packaging_footprint, packaging.breakdown_time AS packaging_breakdown_time, packaging.reusability AS packaging_reusability FROM products JOIN packaging ON products.packaging=packaging.name WHERE
     ${searchParams}
     `;
   }

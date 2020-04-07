@@ -2,7 +2,6 @@ const express = require('express');
 
 const { catchErrors, isNumber } = require('../utils');
 const { selectProducts, selectByIdProducts } = require('./dbProducts');
-const { selectPackaging, selectPackagingByName } = require('../packaging/dbPackaging');
 
 const router = express.Router();
 
@@ -59,11 +58,6 @@ async function productsRoute(req, res) {
   const products = await selectProducts(search);
 
   if (products && products.length !== 0) {
-    const packaging = await selectPackaging();
-    // products.forEach(prod => {
-    //   let total = await selectPackagingByName(prod.packaging);
-      
-    // });
     return res.status(200).json(products);
   }
   return res.status(404).json({ error: 'No products found' });
