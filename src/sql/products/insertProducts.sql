@@ -6,3 +6,4 @@ INSERT INTO products (name, code, packaging, origin, score) VALUES ('MS Léttmj�
 INSERT INTO products (name, code, packaging, origin, score) VALUES ('MS G-mjólk 0.25l', '5690527200004', 'paper', 'Ísland', 4);
 INSERT INTO products (name, code, packaging, origin, score) VALUES ('Smjörvi', '5690516025007', 'paper', 'Ísland', 4);
 INSERT INTO products (name, code, packaging, origin, score) VALUES ('FK Brauð stórt', '5690568010396', 'plastic', 'Ísland', 4);
+INSERT INTO products (name, code, packaging, origin, score) VALUES ('Heimilisbrauð stórt', '5690568010235', 'plastic', 'Ísland', 4);

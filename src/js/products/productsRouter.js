@@ -1,11 +1,11 @@
 const express = require('express');
 
-const { catchErrors, isNumber } = require('../utils');
-const { selectProducts, selectByIdProducts } = require('./dbProducts');
+const { catchErrors, isNumber, calcGrade } = require('../utils');
+const { selectProducts, selectByCodeProducts } = require('./dbProducts');
 
 const router = express.Router();
 
-async function productsIDRoute(req, res, next) {
+async function productsCodeRoute(req, res, next) {
   const { id } = req.params;
 
   if (!id) {
@@ -14,13 +14,16 @@ async function productsIDRoute(req, res, next) {
 
   if (!isNumber(id)) {
     return res.status(400).json({
-      error: 'Leita verður af vöru eftir ID-númeri',
+      error: 'Leita verður af vöru eftir strikamerkisnúmeri',
     });
   }
 
-  const product = await selectByIdProducts(id);
+  const product = await selectByCodeProducts(id);
 
   if (product) {
+    const grade = calcGrade(product);
+
+    product.grade = grade;
     return res.status(200).json(product);
   }
   return res.status(404);
@@ -55,12 +58,16 @@ async function productsRoute(req, res) {
   const products = await selectProducts(search);
 
   if (products && products.length !== 0) {
-    return res.status(200).json(products);
+    const prodsWithGrade = products.map((prod) => {
+      const grade = calcGrade(prod);
+      return { ...prod, grade };
+    });
+    return res.status(200).json(prodsWithGrade);
   }
   return res.status(404).json({ error: 'No products found' });
 }
 
 router.get('/', catchErrors(productsRoute));
-router.get('/:id', catchErrors(productsIDRoute));
+router.get('/:id', catchErrors(productsCodeRoute));
 
 module.exports = router;

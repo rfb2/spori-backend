@@ -51,7 +51,7 @@ async function selectProducts(search) {
   return result.rows;
 }
 
-async function selectByIdProducts(id) {
+async function selectByCodeProducts(id) {
   const q = 'SELECT products.name AS name, code, packaging.name AS packaging, origin, score, packaging.footprint AS packaging_footprint, packaging.breakdown_time AS packaging_breakdown_time, packaging.reusability AS packaging_reusability FROM products JOIN packaging ON products.packaging=packaging.name WHERE products.code=$1';
   const result = await query(q, [id]);
   return result.rows[0];
@@ -59,5 +59,5 @@ async function selectByIdProducts(id) {
 
 module.exports = {
   selectProducts,
-  selectByIdProducts,
+  selectByCodeProducts,
 };
