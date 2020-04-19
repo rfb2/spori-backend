@@ -34,15 +34,12 @@ function isNonEmptyString(s) {
 
 function calcGrade(prod) {
   let grade = 0;
-  console.log(grade);
   grade += prod.score;
-  console.log(grade);
   grade += (prod.packaging_breakdown_time * 10) / 3;
-  console.log(grade);
   grade += (prod.packaging_reusability * 10) / 3;
-  console.log(grade);
   grade += (prod.packaging_footprint * 10) / 12.025;
-  console.log(grade);
+
+  grade /= 4;
 
   return grade;
 }
