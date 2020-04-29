@@ -24,16 +24,18 @@ async function main() {
   // drop tables if exists
   await query('DROP TABLE IF EXISTS products');
   await query('DROP TABLE IF EXISTS packaging');
-  // await query('DROP TABLE IF EXISTS users');
+  await query('DROP TABLE IF EXISTS origin');
 
   console.info('Tables deleted');
 
   // create tables from schemas
   try {
     const tablePackaging = await readFileAsync('./src/sql/packaging/schemaPackaging.sql');
+    const tableOrigin = await readFileAsync('./src/sql/origin/schemaOrigin.sql');
     const tableProducts = await readFileAsync('./src/sql/products/schemaProducts.sql');
 
     await query(tablePackaging.toString('utf8'));
+    await query(tableOrigin.toString('utf8'));
     await query(tableProducts.toString('utf8'));
 
     console.info('Tables created');
@@ -45,9 +47,11 @@ async function main() {
   // insert data into tables
   try {
     const insertPackaging = await readFileAsync('./src/sql/packaging/insertPackaging.sql');
+    const insertOrigin = await readFileAsync('./src/sql/origin/insertOrigin.sql');
     const insertProducts = await readFileAsync('./src/sql/products/insertProducts.sql');
 
     await query(insertPackaging.toString('utf8'));
+    await query(insertOrigin.toString('utf8'));
     await query(insertProducts.toString('utf8'));
 
     console.info('Data inserted');

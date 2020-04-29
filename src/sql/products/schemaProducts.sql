@@ -5,5 +5,6 @@ CREATE TABLE products (
     packaging VARCHAR(128),
     origin VARCHAR(128),
     score REAL NOT NULL,
-    FOREIGN KEY(packaging) REFERENCES packaging(name)
+    FOREIGN KEY(packaging) REFERENCES packaging(name),
+    FOREIGN KEY(origin) REFERENCES origin(name)
 );
