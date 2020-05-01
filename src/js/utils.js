@@ -2,6 +2,8 @@
  * Utils functions that are shared among multible modules are contained here.
  */
 
+const { CIRCUM_EARTH } = require('./const');
+
 
 /**
 * @param {function} fn - Async function to be wrapped into an error catching function.
@@ -36,10 +38,12 @@ function calcGrade(prod) {
   let grade = 0;
   grade += prod.score;
   grade += (prod.packaging_breakdown_time * 10) / 3;
-  grade += (prod.packaging_reusability * 10) / 3;
+  grade += 10 - (prod.packaging_reusability * 10) / 3;
   grade += (prod.packaging_footprint * 10) / 12.025;
 
-  grade /= 4;
+  grade += (prod.origin_distance) / (0.5 * CIRCUM_EARTH);
+
+  grade /= 5;
 
   grade = 10 - grade;
 
