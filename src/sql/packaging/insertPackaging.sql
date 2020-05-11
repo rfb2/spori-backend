@@ -1,3 +1,3 @@
-INSERT INTO packaging (name, footprint, breakdown_time, reusability) VALUES ('plastic', 1.15, 3, 1);
-INSERT INTO packaging (name, footprint, breakdown_time, reusability) VALUES ('paper', 12.025, 1, 1);
-INSERT INTO packaging (name, footprint, breakdown_time, reusability) VALUES ('aluminium can', 11.09, 3, 2)
+INSERT INTO packaging (name, footprint, breakdown_time, reusability) VALUES ('plast', 1.15, 3, 1);
+INSERT INTO packaging (name, footprint, breakdown_time, reusability) VALUES ('pappír', 12.025, 1, 1);
+INSERT INTO packaging (name, footprint, breakdown_time, reusability) VALUES ('ál dós', 11.09, 3, 2)
