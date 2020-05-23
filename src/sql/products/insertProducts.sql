@@ -1,5 +1,6 @@
 -- MJólkurvörur
 INSERT INTO products (name, code, packaging, origin, score) VALUES ('Arna Léttmjólk 1l', '5694230157396', 'pappír', 'Ísland', 4.2);
+INSERT INTO products (name, code, packaging, origin, score) VALUES ('Arna Léttmjólk 1l', '5694230157389', 'pappír', 'Ísland', 4);
 INSERT INTO products (name, code, packaging, origin, score) VALUES ('Arna AB-mjólk', '5694230157013', 'pappír', 'Ísland', 4.5);
 INSERT INTO products (name, code, packaging, origin, score) VALUES ('MS Léttmjólk 1l', '5690527190008', 'pappír', 'Ísland', 4.2);
 INSERT INTO products (name, code, packaging, origin, score) VALUES ('MS Nýmjólk 1l', '5690527105002', 'pappír', 'Ísland', 4);
