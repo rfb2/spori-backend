@@ -38,9 +38,9 @@ async function selectProducts(search) {
 
   let q;
   if (paramValues.length === 0) {
-    q = 'SELECT products.name AS name, code, origin.name AS origin, origin.distance AS origin_distance, score, packaging.name AS packaging, packaging.footprint AS packaging_footprint, packaging.breakdown_time AS packaging_breakdown_time, packaging.reusability AS packaging_reusability FROM products JOIN packaging ON products.packaging=packaging.name JOIN origin on products.origin=origin.name';
+    q = 'SELECT products.name AS name, code, origin.name AS origin, origin.distance AS origin_distance, score, packaging.name AS packaging, packaging.footprint AS packaging_footprint, packaging.breakdown_time AS packaging_breakdown_time, packaging.reusability AS packaging_reusability FROM products JOIN packaging ON products.packaging=packaging.name JOIN origin on products.origin=origin.name ORDER BY products.name';
   } else {
-    q = `SELECT products.name AS name, code, origin.name AS origin, origin.distance AS origin_distance, score, packaging.name AS packaging, packaging.footprint AS packaging_footprint, packaging.breakdown_time AS packaging_breakdown_time, packaging.reusability AS packaging_reusability FROM products JOIN packaging ON products.packaging=packaging.name JOIN origin on products.origin=origin.name WHERE
+    q = `SELECT products.name AS name, code, origin.name AS origin, origin.distance AS origin_distance, score, packaging.name AS packaging, packaging.footprint AS packaging_footprint, packaging.breakdown_time AS packaging_breakdown_time, packaging.reusability AS packaging_reusability FROM products JOIN packaging ON products.packaging=packaging.name JOIN origin on products.origin=origin.name ORDER BY products.name WHERE
     ${searchParams}
     `;
   }
@@ -52,7 +52,7 @@ async function selectProducts(search) {
 }
 
 async function selectByCodeProducts(id) {
-  const q = 'SELECT products.name AS name, code, origin.name AS origin, origin.distance AS origin_distance, score, packaging.name AS packaging, packaging.footprint AS packaging_footprint, packaging.breakdown_time AS packaging_breakdown_time, packaging.reusability AS packaging_reusability FROM products JOIN packaging ON products.packaging=packaging.name JOIN origin on products.origin=origin.name WHERE products.code=$1';
+  const q = 'SELECT products.name AS name, code, origin.name AS origin, origin.distance AS origin_distance, score, packaging.name AS packaging, packaging.footprint AS packaging_footprint, packaging.breakdown_time AS packaging_breakdown_time, packaging.reusability AS packaging_reusability FROM products JOIN packaging ON products.packaging=packaging.name JOIN origin on products.origin=origin.name WHERE products.code=$1 ORDER BY products.name';
   const result = await query(q, [id]);
   return result.rows[0];
 }

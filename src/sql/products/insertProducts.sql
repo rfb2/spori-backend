@@ -25,3 +25,5 @@ INSERT INTO products (name, code, packaging, origin, score) VALUES ('Coca Cola 0
 INSERT INTO products (name, code, packaging, origin, score) VALUES ('Þurrger 50g', '5710815000502', 'plast', 'Danmörk', 1);
 INSERT INTO products (name, code, packaging, origin, score) VALUES ('Hunt`s maukaðir tómatar', '027000379134', 'ál dós', 'Bandaríkin', 2.5);
 INSERT INTO products (name, code, packaging, origin, score) VALUES ('Hunt`s puree', '027000389638', 'ál dós', 'Bandaríkin', 2.7);
+INSERT INTO products (name, code, packaging, origin, score) VALUES ('Besta varan', '0111222333444', 'pappír', 'Ísland', 0);
+INSERT INTO products (name, code, packaging, origin, score) VALUES ('Versta varan', '0444333222111', 'plast', 'Suðurskautslandið', 10);

@@ -2,7 +2,7 @@
  * Utils functions that are shared among multible modules are contained here.
  */
 
-const { CIRCUM_EARTH } = require('./const');
+const { AVG_CO2_EMIS_FLIGHTS, CIRCUM_EARTH } = require('./const');
 
 
 /**
@@ -35,17 +35,19 @@ function isNonEmptyString(s) {
 }
 
 function calcGrade(prod) {
-  let grade = 0;
-  grade += prod.score;
-  grade += (prod.packaging_breakdown_time) / 1000;
-  grade += 10 - (prod.packaging_reusability * 10) / 3;
-  grade += (prod.packaging_footprint * 10) / 12.025;
+  let total = 0;
+  total += prod.packaging_footprint;
+  total += (prod.origin_distance) * AVG_CO2_EMIS_FLIGHTS[2];
 
-  grade += (prod.origin_distance) / (0.5 * CIRCUM_EARTH);
+  const maxTotal = 12.025 + AVG_CO2_EMIS_FLIGHTS[2] * (CIRCUM_EARTH * 0.5);
 
-  grade /= 5;
+  let grade = (total * 10) / maxTotal;
 
-  grade = 10 - grade;
+  grade += prod.score; // Not CO2
+  grade += (prod.packaging_breakdown_time * 10) / 1000; // Not CO2
+  grade += 10 - (prod.packaging_reusability * 10) / 3; // Not CO2
+
+  grade /= 4;
 
   return grade;
 }
