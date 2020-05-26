@@ -37,7 +37,7 @@ function isNonEmptyString(s) {
 function calcGrade(prod) {
   let grade = 0;
   grade += prod.score;
-  grade += (prod.packaging_breakdown_time * 10) / 3;
+  grade += (prod.packaging_breakdown_time) / 1000;
   grade += 10 - (prod.packaging_reusability * 10) / 3;
   grade += (prod.packaging_footprint * 10) / 12.025;
 
