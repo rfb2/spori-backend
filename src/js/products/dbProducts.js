@@ -52,7 +52,7 @@ async function selectProducts(search) {
 }
 
 async function selectByCodeProducts(id) {
-  const q = 'SELECT products.name AS name, code, origin.name AS origin, origin.distance AS origin_distance, score, packaging.name AS packaging, packaging.footprint AS packaging_footprint, packaging.breakdown_time AS packaging_breakdown_time, packaging.reusability AS packaging_reusability FROM products JOIN packaging ON products.packaging=packaging.name JOIN origin on products.origin=origin.name WHERE products.code=$1 ORDER BY products.name';
+  const q = 'SELECT products.name AS name, code, origin.name AS origin, origin.distance AS origin_distance, score, packaging.name AS packaging, packaging.footprint AS packaging_footprint, packaging.breakdown_time AS packaging_breakdown_time, packaging.reusability AS packaging_reusability, packaging_weight FROM products JOIN packaging ON products.packaging=packaging.name JOIN origin on products.origin=origin.name WHERE products.code=$1 ORDER BY products.name';
   const result = await query(q, [id]);
   return result.rows[0];
 }
