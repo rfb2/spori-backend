@@ -49,6 +49,8 @@ function calcGrade(prod) {
 
   grade /= 4;
 
+  grade = 10 - grade;
+
   return grade;
 }
 
