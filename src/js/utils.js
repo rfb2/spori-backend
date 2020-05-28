@@ -36,7 +36,7 @@ function isNonEmptyString(s) {
 
 function calcGrade(prod) {
   let total = 0;
-  total += prod.packaging_footprint;
+  total += prod.packaging_footprint * prod.packaging_weight;
   total += (prod.origin_distance) * AVG_CO2_EMIS_FLIGHTS[2];
 
   const maxTotal = 12.025 + AVG_CO2_EMIS_FLIGHTS[2] * (CIRCUM_EARTH * 0.5);
